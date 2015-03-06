@@ -113,13 +113,17 @@ def main():
     print "\nBusiness days left till deadline : {}".format(w.business_days_left_count)
     print "Total days left till deadline : {}".format(w.days_left_count)
     print "\nThis month targets [Required (minimum)] : {} ({})".format(w.required_hours_this_month, w.required_hours_this_month - (w.required_hours_this_month * config.TOLERANCE_PERCENTAGE))
-    print "\nTo achieve the minimum:\n\tyou should log {0:.2f} hours every business day".format(normal_min_hours)
+    print "\nTo achieve the minimum:\n\tyou should log",
+    print hilite("{0:.2f} hours".format(normal_min_hours), True, True),
+    print "every business day"
     print "\tor log {0:.2f} hours every day".format(crunch_min_hours)
     print "\tleft is : {0:.2f}".format((w.required_hours_this_month - (w.required_hours_this_month * config.TOLERANCE_PERCENTAGE)) - t.achieved_hours)
 
     normal_required_hours, crunch_required_hours = t.get_required_daily_hours(w.business_days_left_count, w.days_left_count)
 
-    print "\nTo achieve the required :\n\tyou should log {0:.2f} hours every business day".format(normal_required_hours)
+    print "\nTo achieve the required :\n\tyou should log",
+    print hilite("{0:.2f} hours".format(normal_required_hours), True, True),
+    print "every business day"
     print "\tor log {0:.2f} hours every day".format(crunch_required_hours)
     print "\tleft is : {0:.2f}".format(w.required_hours_this_month - t.achieved_hours)
     print "\nHow your progress looks:"
